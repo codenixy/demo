@@ -65,9 +65,6 @@ app.get('/api/health', (req, res) => {
   res.status(200).json({ status: 'OK', message: 'Backend is running!' });
 });
 
-
-
-
 const allowedOrigins = ['http://localhost:5173'];
 
 app.use(cors({
@@ -76,7 +73,6 @@ app.use(cors({
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
 }));
-
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
