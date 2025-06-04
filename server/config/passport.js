@@ -1,10 +1,7 @@
 import passport from 'passport';
 import { Strategy as JwtStrategy, ExtractJwt } from 'passport-jwt';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
-import dotenv from 'dotenv';
 import User from '../models/User.js';
-
-dotenv.config();
 
 export const configurePassport = () => {
   // JWT Strategy
@@ -29,9 +26,7 @@ export const configurePassport = () => {
   const googleOptions = {
     clientID: process.env.GOOGLE_CLIENT_ID,
     clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-    // callbackURL: `${process.env.CLIENT_URL}/api/auth/google/callback`
     callbackURL: `${process.env.SERVER_URL}/api/auth/google/callback`
-
   };
 
   passport.use(new GoogleStrategy(googleOptions, async (accessToken, refreshToken, profile, done) => {
