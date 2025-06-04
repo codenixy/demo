@@ -4,6 +4,8 @@ import dotenv from 'dotenv';
 import cors from 'cors';
 import morgan from 'morgan';
 import passport from 'passport';
+import { fileURLToPath } from 'url';
+import { dirname, join } from 'path';
 
 import authRoutes from './routes/auth.js';
 import userRoutes from './routes/users.js';
@@ -14,8 +16,12 @@ import enrollmentRoutes from './routes/enrollments.js';
 import cartRoutes from './routes/cart.js';
 import { configurePassport } from './config/passport.js';
 
-// Load environment variables
-dotenv.config();
+// Get directory path for ES modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
+
+// Load environment variables from root .env file
+dotenv.config({ path: join(__dirname, '..', '.env') });
 
 // Initialize express app
 const app = express();
